@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewData["Title"] = "Painel administrativo";
+}
+
+<div class="card card-espacado">
+    <div class="card-header">
+        <div class="row blue-text text-darken-2">
+            <div class="col s6">
+                <h6 class="valign-wrapper"><i class="material-icons">attach_money</i> GANHOS / DESPESAS POR ANO</h6>
+            </div>
+            <div class="col s6">
+                <div class="row valign-wrapper">
+                    <div class="col s9">
+                        <button type="button" class="btn-small light-blue darken-3 btnGanhos">Ganhos</button>
+                        <button type="button" class="btn-small red darken-4 btnDespesas">Despesas</button>
+                    </div>
+
+                    <div class="col s3">
+                        <select asp-items="ViewBag.Anos" class="validate" id="ano"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <partial name="_GraficoValoresGanhosDespesas" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s6">
+        <div class="collection with-header collectionpie">
+            <div class="collection-header">
+                <h6 class="valign-wrapper"><i class="material-icons">monetization_on</i> GANHOS E DESPESAS TOTAIS</h6>
+            </div>
+
+            <div class="collection-item">
+                <partial name="_GraficoDespesasGanhosTotais" />
+            </div>
+        </div>
+    </div>
+
+    <div class="col s6">
+        <div class="collection with-header collectionpie">
+            <div class="collection-header">
+                <h6 class="valign-wrapper"><i class="material-icons">monetization_on</i> ÚLTIMAS MOVIMENTAÇÕES</h6>
+            </div>
+
+            <div class="collection-item">
+                @await Component.InvokeAsync("UltimasMovimentacoes")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/IniciarSelect.min.js"></script>
+    <script src="~/js/MetdosGraficos.min.js"></script>
+
+    <script>
+        CarregarDadosGanhosPorAno();
+        MontarGraficoDespesasGanhosTotais();
+
+
+        function CarregarDadosGanhosPorAno() {
+            const ano = $("#ano").val();
+            debugger;
+            MontarGraficoLinhasGanhos(ano);
+        }
+
+        function CarregarDadosDespesasPorAno() {
+            const ano = $("#ano").val();
+            debugger;
+            MontarGraficoLinhasDespesas(ano);
+        }
+
+        $(".btnGanhos").on('click', function () {
+            CarregarDadosGanhosPorAno();
+        });
+
+        $(".btnDespesas").on('click', function () {
+            CarregarDadosDespesasPorAno();
+        })
+
+    </script>
+} 

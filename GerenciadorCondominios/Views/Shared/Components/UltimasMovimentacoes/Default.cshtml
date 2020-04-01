@@ -1,0 +1,35 @@
+﻿@model IEnumerable<GerenciadorCondominios.BLL.Models.HistoricoRecursos>
+
+@using GerenciadorCondominios.BLL.Models
+
+
+@if (Model.Any())
+{
+    @foreach (var item in Model)
+    {
+        @if (item.Tipo == Tipos.Saida)
+        {
+            <div class="collection-item">
+                <text class="valign-wrapper">
+                    <i class="material-icons down">arrow_downward</i>
+                    R$ @item.Valor &nbsp; <span class="new badge" data-badge-caption="">@item.Dia de @item.Mes.Nome</span>
+                </text>
+            </div>
+        }
+        else
+        {
+            <div class="collection-item">
+                <text class="valign-wrapper">
+                    <i class="material-icons up">arrow_upward</i>
+                    R$ @item.Valor &nbsp; <span class="new badge" data-badge-caption="">@item.Dia de @item.Mes.Nome</span>
+                </text>
+            </div>
+        }
+    }
+}
+else
+{
+    <div class="collection-item">
+        <text>Sem movimentações ainda</text>
+    </div>
+}

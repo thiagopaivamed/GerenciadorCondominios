@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using GerenciadorCondominios.BLL.Models
+@using GerenciadorCondominios.DAL.Interfaces
+
+@inject SignInManager<Usuario> _gerenciadorLogin
+@inject UserManager<Usuario> _gerenciadorUsuarios
+@inject IUsuarioRepositorio _usuarioRepositorio
+
+@{
+    Usuario usuario = await _usuarioRepositorio.PegarUsuarioPeloNome(User);
+}
+
+<ul id="slide-out" class="sidenav sidenav-fixed">
+    <li class="center-align">
+        <div class="user-view">
+            <div class="background purple darken-4">
+
+            </div>
+            <text> <partial name="_BoasVindas" /></text>
+        </div>
+    </li>
+
+    @if (await _usuarioRepositorio.VerificarSeUsuarioEstaEmFuncao(usuario, "Administrador") || await _usuarioRepositorio.VerificarSeUsuarioEstaEmFuncao(usuario, "Sindico"))
+    {
+        <li class="nav-item"><a class="nav-link" asp-controller="Dashboard" asp-action="Index"><i class="material-icons">insert_chart</i> Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" asp-controller="Usuarios" asp-action="Index"><i class="material-icons">account_box</i> Usuarios</a></li>
+        <li class="nav-item"><a class="nav-link" asp-controller="Apartamentos" asp-action="Index"><i class="material-icons">store</i> Apartamentos</a></li>
+        <li class="nav-item"><a class="nav-link" asp-controller="Alugueis" asp-action="Index"><i class="material-icons">attach_money</i>Alugueis</a></li>
+    }
+    
+    @if (await _usuarioRepositorio.VerificarSeUsuarioEstaEmFuncao(usuario, "Administrador"))
+    {
+        <li class="nav-item"><a class="nav-link" asp-controller="Funcoes" asp-action="Index"><i class="material-icons">group</i>Funções</a></li>
+    }
+
+    <li class="nav-item"><a class="nav-link" asp-controller="Pagamentos" asp-action="Index"><i class="material-icons">monetization_on</i>Pagamentos</a></li>
+    <li class="nav-item"><a class="nav-link" asp-controller="Eventos" asp-action="Index"><i class="material-icons">list</i>Eventos</a></li>
+    <li class="nav-item"><a class="nav-link" asp-controller="Servicos" asp-action="Index"><i class="material-icons">settings</i> Serviços</a></li>
+</ul>

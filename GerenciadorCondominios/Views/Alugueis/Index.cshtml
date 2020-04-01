@@ -1,0 +1,77 @@
+﻿@model IEnumerable<GerenciadorCondominios.BLL.Models.Aluguel>
+
+@{
+    ViewData["Title"] = "Alugueis cadastrados";
+    string controller = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+
+<div class="tabelas">
+
+    <partial name="_Confirmacoes" />
+
+    <div class="collection with-header">
+        <div class="collection-header grey darken-1">
+            <div class="row">
+                <div class="col s10">
+                    <h6 class="white-text">Alugueis Cadastrados</h6>
+                </div>
+                <div class="col s2">
+                    <a asp-controller="Alugueis" asp-action="Create" class="waves-effect waves-light btn-small btn-floating grey darken-4 tooltip" data-position="right" data-tooltip="Novo aluguel">
+                        <i class="material-icons">add</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="collection-item">
+            <table class="striped highlight reponsive">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Valor)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Mes)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Ano)
+                        </th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            R$ @Html.DisplayFor(modelItem => item.Valor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Mes.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ano)
+                        </td>
+                        <td>
+                            <a asp-controller="Alugueis" asp-action="Edit" asp-route-id="@item.AluguelId" class="btn-floating btn-small blue darken-4 tooltip" data-position="right" data-tooltip="Atualizar aluguel">
+                                <i class="material-icons">mode_edit</i>
+                            </a>
+
+                            <a onclick="ConfirmarExclusao(@item.AluguelId, '@item.Valor.ToString()', '@controller')" class="btn-floating btn-small red darken-4 tooltip modal-trigger" data-target="modal" data-position="right" data-tooltip="Excluir aluguel">
+                                <i class="material-icons">delete_forever</i>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<partial name="_ModalExcluir" />
+
+@section Scripts {
+    <script src="~/js/ConfirmarExclusao.min.js"></script>
+}
+

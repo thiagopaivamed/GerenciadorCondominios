@@ -1,0 +1,52 @@
+﻿@model GerenciadorCondominios.BLL.Models.Evento
+
+@{
+    ViewData["Title"] = "Atualizar evento";
+}
+
+<div class="formulario">
+    <div class="collection with-header">
+        <form asp-action="Edit">
+            <div class="collection-header blue darken-3">
+                <h6 class="white-text">Atualizar evento</h6>
+            </div>
+
+            <div class="collection-item">
+                <div asp-validation-summary="ModelOnly" class="red-text text-darken-4"></div>
+
+                <input type="hidden" asp-for="EventoId" />
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Nome" class="validate" id="nome" />
+                        <label asp-for="Nome" id="nome"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Nome"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Data" type="text" class="validate" id="data" />
+                        <label asp-for="Data" id="data"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Data"></span>
+                    </div>
+                </div>
+
+                <input type="hidden" asp-for="UsuarioId" />
+            </div>
+
+            <div class="collection-item">
+                <button type="submit" class="btn-small blue darken-3">Atualizar</button> &emsp;
+                <a asp-action="Index" asp-controller="Eventos">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}    
+    <script src="~/js/InicializarDatepicker.min.js"></script>
+}

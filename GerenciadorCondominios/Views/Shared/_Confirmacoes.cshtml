@@ -1,0 +1,39 @@
+﻿@if (TempData["NovoRegistro"] != null)
+{
+    <div class="card-panel green darken-3 valign-wrapper white-text">
+        <div class="col s1">
+            <i class="material-icons">check_box</i>
+        </div>
+
+        <div class="col s11">
+            @TempData["NovoRegistro"].ToString()
+        </div>
+    </div>
+}
+
+
+@if (TempData["Atualizacao"] != null)
+{
+    <div class="card-panel blue darken-3 valign-wrapper white-text">
+        <div class="col s1">
+            <i class="material-icons">check_box</i>
+        </div>
+
+        <div class="col s11">
+            @TempData["Atualizacao"].ToString()
+        </div>
+    </div>
+}
+
+@if (TempData["Exclusao"] != null)
+{
+    <div class="card-panel red darken-3 valign-wrapper white-text">
+        <div class="col s1">
+            <i class="material-icons">check_box</i>
+        </div>
+
+        <div class="col s11">
+            @TempData["Exclusao"].ToString()
+        </div>
+    </div>
+}

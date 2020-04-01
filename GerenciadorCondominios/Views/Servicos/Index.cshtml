@@ -1,0 +1,103 @@
+﻿@model IEnumerable<GerenciadorCondominios.BLL.Models.Servico>
+
+@using GerenciadorCondominios.BLL.Models
+
+@{
+    ViewData["Title"] = "Serviços cadastrados";
+    string controller = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+
+<div class="tabelas">
+
+    <partial name="_Confirmacoes" />
+
+    <div class="collection with-header">
+        <div class="collection-header grey darken-1">
+            <div class="row">
+                <div class="col s10">
+                    <h6 class="white-text">Serviços Cadastrados</h6>
+                </div>
+                <div class="col s2">
+                    <a asp-controller="Servicos" asp-action="Create" class="waves-effect waves-light btn-small btn-floating grey darken-4 tooltip" data-position="right" data-tooltip="Solicitar serviço">
+                        <i class="material-icons">add</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="collection-item">
+            <table class="striped highlight reponsive">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nome)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Valor)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nome)
+                            </td>
+                            <td>
+                                R$ @Html.DisplayFor(modelItem => item.Valor)
+                            </td>
+
+                            <td>
+                                @if (item.Status == StatusServico.Pendente)
+                                {
+                                    <span class="new badge purple darken-1" data-badge-caption="">@Html.DisplayFor(modelItem => item.Status)</span>
+                                }
+                                else if (item.Status == StatusServico.Aceito)
+                                {
+                                    <span class="new badge green accent-4" data-badge-caption="">@Html.DisplayFor(modelItem => item.Status)</span>
+                                }
+                                else
+                                {
+                                    <span class="new badge deep-orange accent-4" data-badge-caption="">@Html.DisplayFor(modelItem => item.Status)</span>
+                                }
+                            </td>
+
+                            <td>
+                                @if (User.IsInRole("Morador"))
+                                {
+                                    @if (item.Status == StatusServico.Pendente)
+                                    {
+                                        <a asp-controller="Servicos" asp-action="Edit" asp-route-id="@item.ServicoId" class="btn-floating btn-small blue darken-4 tooltip" data-position="right" data-tooltip="Atualizar serviço">
+                                            <i class="material-icons">mode_edit</i>
+                                        </a>
+
+                                        <a onclick="ConfirmarExclusao(@item.ServicoId, '@item.Nome', '@controller')" class="btn-floating btn-small red darken-4 tooltip modal-trigger" data-target="modal" data-position="right" data-tooltip="Excluir serviço">
+                                            <i class="material-icons">delete_forever</i>
+                                        </a>
+                                    }
+                                }
+                                else
+                                {
+                                    <a asp-action="AprovarServico" asp-route-id="@item.ServicoId" class="btn-floating btn-small blue darken-4 tooltip" data-position="left" data-tooltip="Aprovar Servico"><i class="material-icons">thumb_up</i></a>
+                                    <a asp-action="RecusarServico" asp-route-id="@item.ServicoId" class="btn-floating btn-small red darken-4 tooltip" data-position="left" data-tooltip="Recusar Servico"><i class="material-icons">thumb_down</i></a>
+                                }
+                            </td>                            
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<partial name="_ModalExcluir" />
+
+@section Scripts {
+    <script src="~/js/ConfirmarExclusao.min.js"></script>
+}

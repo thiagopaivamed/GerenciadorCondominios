@@ -1,0 +1,61 @@
+﻿@model GerenciadorCondominios.BLL.Models.Veiculo
+
+@{
+    ViewData["Title"] = "Novo veículo";
+}
+
+<div class="collection with-header">
+    <form asp-action="Create">
+        <div class="collection-header green darken-3">
+            <h6 class="white-text">Novo veículo</h6>
+        </div>
+
+        <div class="collection-item">
+            <div asp-validation-summary="ModelOnly" class="red-text text-darken-4"></div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input asp-for="Nome" class="validate" id="nome" />
+                    <label asp-for="Nome" id="nome"></label>
+                    <span class="red-text text-darken-4" asp-validation-for="Nome"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input asp-for="Marca" class="validate" id="marca" />
+                    <label asp-for="Marca" id="marca"></label>
+                    <span class="red-text text-darken-4" asp-validation-for="Marca"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input asp-for="Cor" class="validate" id="cor" />
+                    <label asp-for="Cor" id="cor"></label>
+                    <span class="red-text text-darken-4" asp-validation-for="Cor"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input asp-for="Placa" class="validate" id="placa" />
+                    <label asp-for="Placa" id="placa"></label>
+                    <span class="red-text text-darken-4" asp-validation-for="Placa"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="collection-item">
+            <button type="submit" class="btn-small green darken-3">Salvar</button> &emsp;
+            <a asp-action="MinhasInformacoes" asp-controller="Usuarios">Voltar</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+    <script src="~/js/IniciarMascaras.min.js"></script>
+
+}

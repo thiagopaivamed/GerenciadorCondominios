@@ -1,0 +1,40 @@
+﻿@model GerenciadorCondominios.ViewModels.ServicoAprovadoViewModel
+@{
+    ViewData["Title"] = "Aprovação do servico " + Model.Nome;
+}
+
+<div class="formulario">
+    <div class="collection with-header">
+        <form asp-action="AprovarServico">
+            <div class="collection-header green darken-3">
+                <h6 class="white-text">Aprovação do serviço @Model.Nome</h6>
+            </div>
+
+            <div class="collection-item">
+                <div asp-validation-summary="ModelOnly" class="red-text text-darken-4"></div>               
+
+                <input type="hidden" asp-for="ServicoId" />
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Data" type="text" class="validate" id="data" />
+                        <label asp-for="Data" id="data"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Data"></span>
+                    </div>
+                </div>              
+            </div>
+
+            <div class="collection-item">
+                <button type="submit" class="btn-small green darken-3">Salvar</button> &emsp;
+                <a asp-action="Index" asp-controller="Servicos">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/InicializarDatepicker.min.js"></script>
+}
+
+

@@ -1,0 +1,70 @@
+﻿@model GerenciadorCondominios.BLL.Models.Usuario
+@{
+    ViewData["Title"] = "Minhas Informações";
+}
+
+<partial name="_Confirmacoes" />
+
+<div class="card horizontal">
+    <div class="card-image">
+        <i><img src="@Url.Content(Model.Foto)" height="250" /></i>
+    </div>
+
+    <div class="card-stacked">
+        <div class="card-content">
+            <div class="row">
+                <div class="col s6">
+                    <span class="card-text purple-text darken-3">Nome - @Model.UserName</span>
+                </div>
+                <div class="col s6">
+                    <span class="card-text purple-text darken-3">Email - @Model.Email</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6">
+                    <span class="card-text purple-text darken-3">CPF - @Model.CPF</span>
+                </div>
+                <div class="col s6">
+                    <span class="card-text purple-text darken-3">Telefone - @Model.PhoneNumber</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-action">
+            <a asp-controller="Usuarios" asp-action="Atualizar" asp-route-id="@Model.Id" class="btn-small purple darken-3">Atualizar</a>
+        </div>
+    </div>
+</div>
+
+<div>
+    @await Component.InvokeAsync("Veiculos", Model.Id)
+</div>
+
+<div>
+    <partial name="_ModalExcluir" />
+</div>
+
+@section Scripts{
+    <script>
+        function ConfirmarExclusao(id, nome) {
+            $('.modal').modal({
+                dismissble: true
+            });
+
+            $('#modal').modal('open');
+            $(".nome").text(nome);
+
+            $(".btnExcluir").on('click', function () {
+                $.ajax({
+                    method: "POST",
+                    url: "/Veiculos/Delete",
+                    data: { id: id },
+                    success: function (data) {
+                        location.reload(true);
+                    }
+                })
+            })           
+        }
+    </script>
+}

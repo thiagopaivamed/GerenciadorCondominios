@@ -1,0 +1,95 @@
+﻿@model IEnumerable<GerenciadorCondominios.BLL.Models.Pagamento>
+
+@using GerenciadorCondominios.BLL.Models
+
+@{
+    ViewData["Title"] = "Pagamentos cadastrados";
+    string controller = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+
+<div class="tabelas">
+
+    <partial name="_Confirmacoes" />
+
+    <div class="collection with-header">
+        <div class="collection-header grey darken-1">
+            <div class="row">
+                <div class="col s10">
+                    <h6 class="white-text">Pagamentos Cadastrados</h6>
+                </div>
+                <div class="col s2">
+                </div>
+            </div>
+        </div>
+
+        <div class="collection-item">
+            <table class="striped highlight reponsive">
+                <thead>
+                    <tr>
+                        <th>
+                            Mês
+                        </th>
+                        <th>
+                            Valor
+                        </th>
+                        <th>
+                            Data de Pagamento
+                        </th>
+                        <th>
+                            Status
+                        </th>
+
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Aluguel.Mes.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Aluguel.Valor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DataPagamento)
+                        </td>
+
+                        @if (item.Status == StatusPagamento.Atrasado)
+                        {
+                            <td>
+                                <span class="new badge red darken-3" data-badge-caption="">@Html.DisplayFor(modelItem => item.Status)</span>
+                            </td>
+
+                            <td>
+                                <a asp-action="EfetuarPagamento" asp-route-id="@item.PagamentoId" data-position="right" data-tooltip="Efetuar pagamento" class="btn-small btn-floating green accent-4 tooltip">
+                                    <i class="material-icons">credit_card</i>
+                                </a>
+                            </td>
+                        }
+                        else if (item.Status == StatusPagamento.Pago)
+                        {
+                            <td>
+                                <span class="new badge green darken-3" data-badge-caption="">@Html.DisplayFor(modelItem => item.Status)</span>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <span class="new badge orange darken-3" data-badge-caption="">@Html.DisplayFor(modelItem => item.Status)</span>
+                            </td>
+
+                            <td>
+                                <a asp-action="EfetuarPagamento" asp-route-id="@item.PagamentoId" data-position="right" data-tooltip="Efetuar pagamento" class="btn-small btn-floating green accent-4 tooltip">
+                                    <i class="material-icons">credit_card</i>
+                                </a>
+                            </td>
+                        }
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

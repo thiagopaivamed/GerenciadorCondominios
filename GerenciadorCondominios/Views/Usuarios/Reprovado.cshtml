@@ -1,0 +1,30 @@
+﻿@model string
+@{
+    Layout = null;
+    ViewData["Title"] = "Conta reprovada";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <environment include="Development">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </environment>
+
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </environment>
+    <title>Conta reprovada</title>
+</head>
+<body class="white-text red darken-2 container" style="position:absolute;top:40%;left:20%">
+    <div>
+        <h1>Conta reprovada</h1>
+        <h5>Olá, @Model ! Infelizmente sua conta foi reprovada</h5>
+    </div>
+</body>
+</html>

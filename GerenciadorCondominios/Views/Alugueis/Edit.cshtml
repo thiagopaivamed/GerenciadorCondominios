@@ -1,0 +1,53 @@
+﻿@model GerenciadorCondominios.BLL.Models.Aluguel
+
+@{
+    ViewData["Title"] = "Atualizar aluguel no valor de " + Model.Valor + " mes " + Model.MesId + " ano " + Model.Ano;
+}
+
+<div class="formulario">
+    <div class="collection with-header">
+        <form asp-action="Edit">
+            <div class="collection-header blue darken-3">
+                <h6 class="white-text">Atualizar aluguel no valor de @Model.Valor mês @Model.Mes.Nome ano @Model.Ano</h6>
+            </div>
+
+            <div class="collection-item">
+                <div asp-validation-summary="ModelOnly" class="red-text text-darken-4"></div>
+
+                <input type="hidden" asp-for="AluguelId" />
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Valor" class="validate" id="valor" />
+                        <label asp-for="Valor" id="valor"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Valor"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select asp-for="MesId" class="validate" asp-items="ViewBag.MesId" id="mes"></select>
+                        <label asp-for="MesId" id="mes">Selecione o mes</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Ano" class="validate" id="ano" />
+                        <label asp-for="Ano" id="ano"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Ano"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-item">
+                <button type="submit" class="btn-small blue darken-3">Atualizar</button> &emsp;
+                <a asp-action="Index" asp-controller="Alugueis">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {    
+    <script src="~/js/IniciarSelect.min.js"></script>
+}

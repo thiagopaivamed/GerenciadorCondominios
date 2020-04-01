@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using GerenciadorCondominios.BLL.Models
+@using GerenciadorCondominios.DAL.Interfaces
+
+@inject SignInManager<Usuario> _gerenciadorLogin
+@inject UserManager<Usuario> _gerenciadorUsuarios
+@inject IUsuarioRepositorio _usuarioRepositorio
+
+@{
+    Usuario usuario = await _usuarioRepositorio.PegarUsuarioPeloNome(User);
+    IList<string> funcoes = await _usuarioRepositorio.PegarFuncoesUsuario(usuario);
+}
+
+@if (_gerenciadorLogin.IsSignedIn(User))
+{
+    <ul>
+        <li>
+            <a class="nav-link" asp-controller="Usuarios" asp-action="MinhasInformacoes"><span class="white-text">Olá, @usuario.UserName</span></a>
+        </li>
+
+        <li>
+            <a class="nav-link white-text">@usuario.Email</a>
+        </li>
+
+        <li>
+            @foreach(string funcao in funcoes)
+            {
+                <a class="nav-link white-text">@funcao</a>
+            }
+        </li>
+
+        <li>
+            <a class="nav-link white-text">Bem vindo ao MVC Condomínios</a>
+        </li>
+        
+    </ul>
+}

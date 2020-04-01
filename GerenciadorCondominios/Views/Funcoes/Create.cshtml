@@ -1,0 +1,45 @@
+﻿@model GerenciadorCondominios.BLL.Models.Funcao
+
+@{
+    ViewData["Title"] = "Nova função";
+}
+
+<div class="formulario">
+    <div class="collection with-header">
+        <form asp-action="Create">
+            <div class="collection-header green darken-3">
+                <h6 class="white-text">Nova função</h6>
+            </div>
+
+            <div class="collection-item">
+                <div asp-validation-summary="ModelOnly" class="red-text text-darken-4"></div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Name" class="validate" id="name" />
+                        <label asp-for="Name" id="name"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Name"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input asp-for="Descricao" class="validate" id="descricao" />
+                        <label asp-for="Descricao" id="descricao"></label>
+                        <span class="red-text text-darken-4" asp-validation-for="Descricao"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-item">
+                <button type="submit" class="btn-small green darken-3">Salvar</button> &emsp;
+                <a asp-action="Index" asp-controller="Eventos">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

@@ -1,0 +1,32 @@
+﻿@model string
+@{
+    Layout = null;
+    ViewData["Title"] = "Conta em aprovação";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <environment include="Development">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        
+    </environment>
+
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        
+    </environment>
+    <title>Conta em aprovação</title>
+</head>
+<body class="white-text blue darken-2 container" style="position:absolute;top:40%;left:20%">
+    <div>
+        <h1>Conta em aprovação</h1>
+        <h5>Olá, @Model ! Sua conta está sob análise. Em breve, você poderá acessar o sistema.</h5>
+    </div>
+</body>
+</html>

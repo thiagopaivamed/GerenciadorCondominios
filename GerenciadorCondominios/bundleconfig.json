@@ -1,0 +1,45 @@
+[
+  {
+    "outputFileName": "wwwroot/js/MetdosGraficos.js",
+    "inputFiles": [
+      "wwwroot/js/Graficos.js",
+      "wwwroot/js/MetodosComuns.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/ConfirmarExclusao.min.js",
+    "inputFiles": [
+      "wwwroot/js/ConfirmarExclusao.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/InicializarDatepicker.min.js",
+    "inputFiles": [
+      "wwwroot/js/InicializarDatepicker.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/InicializarTooltips.min.js",
+    "inputFiles": [
+      "wwwroot/js/InicializarTooltips.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/IniciarMascaras.min.js",
+    "inputFiles": [
+      "wwwroot/js/IniciarMascaras.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/IniciarSelect.min.js",
+    "inputFiles": [
+      "wwwroot/js/IniciarSelect.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/OperacoesUsuario.min.js",
+    "inputFiles": [
+      "wwwroot/js/OperacoesUsuario.js"
+    ]
+  }
+]

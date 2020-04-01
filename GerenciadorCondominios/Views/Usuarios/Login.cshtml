@@ -1,0 +1,74 @@
+﻿@model GerenciadorCondominios.ViewModels.LoginViewModel
+@{
+    Layout = null;
+    ViewData["Title"] = "Login de moradores";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login de moradores</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="~/css/site.css" rel="stylesheet" />
+    </environment>
+
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="~/css/site.min.css" rel="stylesheet" />
+    </environment>
+</head>
+<body class="corpo">
+    <div class="loginform">
+        <div class="center-align">
+            <h4><i class="large material-icons">account_circle</i></h4>
+            <h5>Login</h5>
+        </div>
+
+        <div>
+            <form asp-action="Login">
+                <div class="campos">
+                    <div class="red-text text-darken-4" asp-validation-summary="ModelOnly"></div>
+
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input asp-for="Email" class="validate" id="Email" />
+                            <label asp-for="Email" id="Email"></label>
+                            <span asp-validation-for="Email" class="red-text text-darken-4"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input asp-for="Senha" class="validate" type="password" id="Senha" />
+                            <label asp-for="Senha" id="Senha"></label>
+                            <span asp-validation-for="Senha" class="red-text text-darken-4"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="botoes">
+                    <button type="submit" class="waves-effect waves-light btn-small green darken-4">Login</button> &emsp;
+                    <a asp-controller="Usuarios" asp-action="Registro">Não possuo uma conta</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <environment include="Development">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
+    </environment>
+
+    <environment exclude="Development">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
+    </environment>
+</body>
+</html>

@@ -1,0 +1,36 @@
+﻿@model List<GerenciadorCondominios.ViewModels.FuncaoUsuariosViewModel>
+@{
+    ViewData["Title"] = "Atualizar funcões do usuário " + @ViewBag.Nome;
+}
+
+<form asp-action="GerenciarUsuario" method="post">
+    <div asp-validation-summary="All"></div>
+
+    <div class="collection with-header">
+        <div class="collection-header grey darken-1">
+            <h6 class="white-text">Atualizar funções do usuário @ViewBag.Nome</h6>
+        </div>
+
+        <div class="collection-item">
+            @for(int i = 0; i < Model.Count(); i++)
+            {
+            <label>
+                <input type="checkbox" asp-for="@Model[i].isSelecionado" />
+                <span asp-for="@Model[i].isSelecionado">@Model[i].Nome - @Model[i].Descricao</span>
+                <input type="hidden" asp-for="@Model[i].FuncaoId" />
+                <input type="hidden" asp-for="@Model[i].Nome" />
+            </label>
+            <br />
+            }
+        </div>
+
+        <div class="collection-item">
+            <input type="submit" value="Atualizar" class="btn-small blue darken-3" /> &emsp;
+            <a asp-controller="Usuarios" asp-action="Index">Voltar</a>
+        </div>
+
+    </div>
+
+
+</form>
+
