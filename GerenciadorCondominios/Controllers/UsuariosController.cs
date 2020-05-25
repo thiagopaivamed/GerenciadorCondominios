@@ -375,7 +375,7 @@ namespace GerenciadorCondominios.Controllers
             return View(viewModel);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult RedefinirSenha(Usuario usuario)
         {
@@ -387,7 +387,7 @@ namespace GerenciadorCondominios.Controllers
             return View(model);
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> RedefinirSenha(LoginViewModel model)
         {

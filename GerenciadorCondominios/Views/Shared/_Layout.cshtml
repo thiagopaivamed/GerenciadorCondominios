@@ -20,11 +20,17 @@
 
     <div class="row">
         <div class="col s3">
-            <partial name="_SideNav" />
+            @if (User.Identity.IsAuthenticated)
+            {
+                <partial name="_SideNav" />
+            }
         </div>
 
         <div class="col s9">
-            <partial name="_Nav" />
+            @if (User.Identity.IsAuthenticated)
+            {
+                <partial name="_Nav" />
+            }
 
             <div class="conteudo-principal">
                 <div class="body-content">
