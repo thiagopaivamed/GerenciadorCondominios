@@ -19,10 +19,10 @@ namespace GerenciadorCondominios.Extensions
             services.Configure<IdentityOptions>(opcoes =>
             {
                 opcoes.Password.RequireDigit = true;
-                opcoes.Password.RequireLowercase = true;
-                opcoes.Password.RequiredLength = 8;
-                opcoes.Password.RequireNonAlphanumeric = true;
-                opcoes.Password.RequireUppercase = true;
+                opcoes.Password.RequireLowercase = false;
+                opcoes.Password.RequiredLength = 4;
+                opcoes.Password.RequireNonAlphanumeric = false;
+                opcoes.Password.RequireUppercase = false;
                 opcoes.Password.RequiredUniqueChars = 0;
             });
         }
